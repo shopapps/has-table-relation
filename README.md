@@ -33,5 +33,7 @@ You can then handle related records from the numbers table in the usual way e.g.
 ```
 $yourModelInstance->numbers; // gets all records
 
-$yourModelInstance->numbers()->where('status', 'active')->paginate(); // gets paginated set of records with given criteria
+$yourModelInstance->numbers()->where('status', 'active')->paginate(); // gets filtered paginated records
 ```
+
+if you can think of some other unusual relations that could be added, just add a Pull Request or message.
