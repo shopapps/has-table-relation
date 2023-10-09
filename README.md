@@ -4,7 +4,7 @@ provides a relation to an entire table without the need for any linked attribute
 # installation
 
 ```bash
-composer require shop apps/has-table-relation
+composer require shopapps/has-table-relation
 ```
 
 # usage
