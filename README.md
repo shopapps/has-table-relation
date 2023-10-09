@@ -10,11 +10,11 @@ composer require shopapps/has-table-relation
 # usage
 Use the `HasTable` trait in your Eloquent model:
 ```php
-use ShopApps\HasTableRelation\HasTable;
+use ShopApps\HasTableRelation\Illuminate\Database\Eloquent\Concerns\HasOtherRelationships;
 
 class YourModel extends Model
 {
-    use HasTable;
+    use HasOtherRelationships;
 
     public function numbers()
     {
