@@ -29,9 +29,9 @@ class YourModel extends Model
     }
 }
 ```
-You can now retrieve all records from the numbers table using:
+You can then handle related records from the numbers table in the usual way e.g.:
 ```
-$yourModelInstance->numbers;
+$yourModelInstance->numbers; // gets all records
 
-$yourModelInstance->numbers()->where('column','=', 'test')->paginate();
+$yourModelInstance->numbers()->where('status', 'active')->paginate(); // gets paginated set of records with given criteria
 ```
