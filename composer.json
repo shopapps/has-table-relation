@@ -2,6 +2,14 @@
     "name": "shopapps/has-table-relation",
     "description": "Provides a hasTable Eloquent relation to fetch all records from a table.",
     "type": "library",
+     "keywords": [
+        "laravel",
+        "relations",
+        "eloquent",
+        "database",
+        "illuminate"
+    ],
+    "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
         "illuminate/database": "^8.0|^9.0|^10.0|^11.0"
