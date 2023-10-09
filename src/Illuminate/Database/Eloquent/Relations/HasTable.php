@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Concerns\InteractsWithDictionary;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use ShopApps\HasTableRelation\Traits\HasOrg;
 
 class HasTable extends Relation
 {
     use InteractsWithDictionary;
-    use HasOrg;
     
     public function __construct(Builder $query, Model $parent)
     {
