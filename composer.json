@@ -1,0 +1,21 @@
+{
+    "name": "shopapps/has-table-relation",
+    "description": "Provides a hasTable Eloquent relation to fetch all records from a table.",
+    "type": "library",
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/database": "^8.0|^9.0|^10.0|^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ShopApps\\HasTableRelation\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ShopApps\\HasTableRelation\\HasTableRelationServiceProvider"
+            ]
+        }
+    }
+}
