@@ -40,6 +40,9 @@ trait HasOtherRelationships
 
     protected function newBelongsToTable(Builder $query, Model $parent, $whichRow = 'first', $ownerKey = null, $relationName = null)
     {
+         switch($whichRow) {
+            case 'all': $whichRow = 'get'; break;
+        }
         return new BelongsToTable($query, $parent, $whichRow, $ownerKey, $relationName);
     }
 }
