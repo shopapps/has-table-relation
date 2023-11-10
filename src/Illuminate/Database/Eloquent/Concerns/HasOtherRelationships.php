@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use ShopApps\HasTableRelation\Illuminate\Database\Eloquent\Relations\HasTable;
+use ShopApps\HasTableRelation\Illuminate\Database\Eloquent\Relations\BelongsToTable;
 
 trait HasOtherRelationships
 {
@@ -31,4 +32,14 @@ trait HasOtherRelationships
         return new HasTable($query, $parent);
     }
 
+    public function BelongsToTable($related, $whichRow = 'first', $ownerKey = null, $relationName = null)
+    {
+        $instance = $this->newRelatedInstance($related);
+        return $this->newBelongsToTable($instance->newQuery(), $this, $whichRow, $ownerKey, $relationName);
+    }
+
+    protected function newBelongsToTable(Builder $query, Model $parent, $whichRow, $ownerKey, $relationName)
+    {
+        return new BelongsToTable($query, $parent, $whichRow, $ownerKey, $relationName);
+    }
 }
