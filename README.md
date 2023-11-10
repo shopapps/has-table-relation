@@ -75,9 +75,9 @@ class Number extends Model
         return $this->belongsToTable(Customer::class, 'last'); // calls $query->last() on the parent model
     }
     // another example...
-    public function customer()
+    public function customers() // plural since we will be returning more than one ;-) 
     {
-        return $this->belongsToTable(Customer::class, 'all'); // calls $query->all() on the parent model
+        return $this->belongsToTable(Customer::class, 'all'); // calls $query->get() on the parent model
     }
 }
 ```
