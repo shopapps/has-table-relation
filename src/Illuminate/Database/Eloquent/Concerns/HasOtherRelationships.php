@@ -38,7 +38,7 @@ trait HasOtherRelationships
         return $this->newBelongsToTable($instance->newQuery(), $this, $whichRow, $ownerKey, $relationName);
     }
 
-    protected function newBelongsToTable(Builder $query, Model $parent, $whichRow, $ownerKey, $relationName)
+    protected function newBelongsToTable(Builder $query, Model $parent, $whichRow = 'first', $ownerKey = null, $relationName = null)
     {
         return new BelongsToTable($query, $parent, $whichRow, $ownerKey, $relationName);
     }
