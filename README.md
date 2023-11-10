@@ -87,7 +87,7 @@ $number = Number::find(1);
 
 $number->customer;
 
-// or if yo uhave more than one customer record owner of this number
+// or if you have more than one customer record owner of this number
 $number->customer()->where( 'active', true )->paginate();
 
 ```
