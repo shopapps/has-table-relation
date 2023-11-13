@@ -7,6 +7,7 @@ Whilst I would always recommend to have a local_key -> foreign_key link (e.g. `n
 
 Sometimes you just don't have the luxury of properly designed data models. :-(
 
+NOTE: before usign this package, you could also consider using a `belongsToMany` relationship and create a pivot table between the two tables.  Make sure if you do that you then seed the pivot table mapping all the records you need.  I have added a sample migration file at the bottom of this readme that would allow you to do this as per my customer -> numbers example scenario.
 
 # installation
 
@@ -92,4 +93,79 @@ $number->customer()->where( 'active', true )->paginate();
 
 ```
 
+
+# BelongsToMany - A laravel standard relationship
+Before usign this package, you could also consider using a `belongsToMany` relationship and create a pivot table between the two tables.  Make sure if you do that you then seed the pivot table mapping all the records you need.  I have added a sample migration file below that would do this as per my customer -> numbers example scenario.
+
+```php
+
+<?php
+
+use App\Models\Customer;
+use App\Models\Number;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public $table     = 'customer_number'; // standard is to keep the table names in alphabetical order
+    public $columnOne = 'customer';
+    public $columnTwo = 'number';
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        if (!Schema::hasTable($this->table))
+        {
+            Schema::create($this->table, function (Blueprint $table)
+            {
+                $table->unsignedInteger("{$this->columnOne}_id")->index();
+                $table->unsignedInteger("{$this->columnTwo}_id")->index();
+
+                /* setup index across the two */
+                $table->primary(["{$this->columnOne}_id", "{$this->columnTwo}_id"]);
+            });
+
+            $this->buildData();  // populate the pivot table
+        }
+    }
+
+    public function buildData() {
+
+        /*
+         * find the first record in $columnOne and populate the pivot table with all records from $columnTwo
+         */
+
+        $connection = Schema::getConnection();
+
+        /** @var Customer $customer */
+        $customer = new Customer();
+        $customer->setConnection($connection->getName());
+        $customer = $customer->first(); // my table only has one record, yours may be different, so collect and loop accordingly.
+
+        if($customer) {
+            /** @var Number $customer */
+            $numbers = new Number();
+            $numbers->setConnection($connection->getName());
+            $numbers = $numbers->get(); // get all the rows
+
+            if(count($numbers) > 0) {
+                $numbers = $numbers->pluck('id')->toArray(); // put id's into an array
+                $customer->numbers()->syncWithoutDetaching($numbers); // attach the id's to the pivot table
+            }
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists($this->table);
+    }
+};
+
+```
 
