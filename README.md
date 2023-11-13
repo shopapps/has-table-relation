@@ -7,7 +7,7 @@ Whilst I would always recommend to have a local_key -> foreign_key link (e.g. `n
 
 Sometimes you just don't have the luxury of properly designed data models. :-(
 
-NOTE: before usign this package, you could also consider using a `belongsToMany` relationship and create a pivot table between the two tables.  Make sure if you do that you then seed the pivot table mapping all the records you need.  I have added a sample migration file at the bottom of this readme that would allow you to do this as per my customer -> numbers example scenario.
+#### NOTE: before usign this package, you could also consider using a `belongsToMany` relationship and create a pivot table between the two tables.  Make sure if you do that you then seed the pivot table mapping all the records you need and also keep them in sync when your code add's removes records.  I have added a sample migration file at the bottom of this readme that would allow you to do this as per my customer -> numbers example scenario.
 
 # installation
 
