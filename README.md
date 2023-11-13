@@ -3,9 +3,7 @@ Provides a relation to an entire table without the need for any linked foreign k
 
 This package provides a way to link a model to an entire table without the need for any foreign key attributes.  This is useful when you have a table that contains data that should be related to a model but does not have a foreign key column to link it to.
 
-Whilst I would always recommend to have a local_key -> foreign_key link (e.g. `numbers.customer_id` => `customer.id`) for your related data allowing you to use the standard  hasMany / belongsTo relationships. 
-
-Sometimes you just don't have the luxury of properly designed data models. :-(
+Whilst it is always recommend to have a local_key <=> foreign_key mapping (e.g. `numbers.customer_id` <=> `customer.id`) for any related data which allows for the standard  `hasMany` / `belongsTo` relationship(s), sometimes you just inherit data and don't have the luxury of properly designed data models. :-(
 
 #### NOTE: before usign this package, you could also consider using a `belongsToMany` relationship and create a pivot table between the two tables.  Make sure if you do that you then seed the pivot table mapping all the records you need and also keep them in sync when your code add's removes records.  I have added a sample migration file at the bottom of this readme that would allow you to do this as per my customer -> numbers example scenario.
 
